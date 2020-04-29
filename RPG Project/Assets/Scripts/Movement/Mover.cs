@@ -2,35 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Core;
 
-public class Mover : MonoBehaviour
-{
-
-    void Update()
+namespace RPG.Movement{
+    public class Mover : MonoBehaviour, IAction
     {
-        if(Input.GetMouseButton(0)){
-            MoveToCursor();
+        NavMeshAgent navMeshAgent;
+
+        void Start(){
+            navMeshAgent = GetComponent<NavMeshAgent>();
         }
-        UpdateAnimator();
-    }
-    void MoveToCursor(){
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        bool hasHit = Physics.Raycast(ray,out hit);
-        if(hasHit){
-           NavMeshAgent agent = GetComponent<NavMeshAgent>();
-           agent.destination = hit.point;
-           
+        void Update()
+        {
+            // if(Input.GetMouseButton(0)){
+            //     MoveToCursor();
+            // }
+            UpdateAnimator();
         }
-        
+
+        public void MoveTo(Vector3 destination)
+        {
+            navMeshAgent.isStopped = false;
+            navMeshAgent.destination = destination;
+            //GetComponent<ActionScheduler>().StartAction(this);
+        }
+
+        public void Cancel(){
+            navMeshAgent.isStopped = true;
+        }
+
+        private void UpdateAnimator(){
+            Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+            Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+            float speed = localVelocity.z;
+            GetComponent<Animator>().SetFloat("ForwardSpeed", speed);
+        }
+
+        public void StartMoveAction(Vector3 destination){
+            GetComponent<ActionScheduler>().StartAction(this);
+            MoveTo(destination);
+        }
+    }
 
     }
-    private void UpdateAnimator(){
-        Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
-        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
-        float speed = localVelocity.z;
-        GetComponent<Animator>().SetFloat("ForwardSpeed", speed);
-    }
-
-
-}
