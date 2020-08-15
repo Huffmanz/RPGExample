@@ -10,7 +10,7 @@ namespace RPG.Combat{
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float weaponDamage = 10f;
         float weaponRange = 2;
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;
         public void Update(){
             timeSinceLastAttack += Time.deltaTime;
             if(target == null) return;
@@ -22,7 +22,7 @@ namespace RPG.Combat{
             }
             else
             {
-                GetComponent<Mover>().MoveTo(target.transform.position); 
+                GetComponent<Mover>().MoveTo(target.transform.position, 1f); 
             }
         }
 
@@ -39,11 +39,11 @@ namespace RPG.Combat{
 
         private void TriggerAttack()
         {
-            GetComponent<Animator>().ResetTrigger("StopAttack");
+            GetComponent<Animator>().ResetTrigger("stopAttack");
             GetComponent<Animator>().SetTrigger("Attack");
         }
 
-        public void Attack(CombatTarget combatTarget){
+        public void Attack(GameObject combatTarget){
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
         }
@@ -52,6 +52,7 @@ namespace RPG.Combat{
         {
             target = null;
             StopAttack();
+            GetComponent<Mover>().Cancel();
         }
 
         private void StopAttack()
@@ -60,7 +61,7 @@ namespace RPG.Combat{
             GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
-        public bool CanAttack(CombatTarget combatTarget){
+        public bool CanAttack(GameObject combatTarget){
             if(combatTarget == null) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.isDead;

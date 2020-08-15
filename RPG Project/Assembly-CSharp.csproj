@@ -36,16 +36,44 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\AllSkyFree\AllSkyFree_Menu.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\3rdPersonWithAimMode\ActivateOnKeypress.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\CameraMagnets\CameraMagnetProperty.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\CameraMagnets\CameraMagnetTargetController.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\DualTarget\MoveAimTarget.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\DualTarget\PointAtAimTarget.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\Scripting\ScriptingExample.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\Trigger volumes\GenericTrigger.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovement.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovement2D.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovementNoCamera.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\ActivateCamOnPlay.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\ActivateCameraWithDistance.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\ExampleHelpWindow.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\InvokeEventFromInspector.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\MixingCameraBlend.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMove.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
+     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\SpawnInCircle.cs" />
+     <Compile Include="Assets\Scripts\Cinematics\CinematicTrigger.cs" />
+     <Compile Include="Assets\Scripts\Cinematics\CinematicsControlRemover.cs" />
      <Compile Include="Assets\Scripts\Combat\CombatTarget.cs" />
      <Compile Include="Assets\Scripts\Combat\Fighter.cs" />
-     <Compile Include="Assets\Scripts\Combat\Health.cs" />
+     <Compile Include="Assets\Scripts\Control\AIController.cs" />
+     <Compile Include="Assets\Scripts\Control\PatrolPath.cs" />
      <Compile Include="Assets\Scripts\Control\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Core\ActionScheduler.cs" />
      <Compile Include="Assets\Scripts\Core\FollowCamera.cs" />
+     <Compile Include="Assets\Scripts\Core\Health.cs" />
      <Compile Include="Assets\Scripts\Core\IAction.cs" />
+     <Compile Include="Assets\Scripts\Core\PersistentObjectsSpawner.cs" />
      <Compile Include="Assets\Scripts\Movement\Mover.cs" />
+     <Compile Include="Assets\Scripts\Scene Management\Fader.cs" />
+     <Compile Include="Assets\Scripts\Scene Management\Portal.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
      <None Include="Assets\Asset Packs\Animations by Explosive\README - Usage Rights for these assets 1.txt" />
+     <None Include="Assets\AllSkyFree\AllSkyFree_Readme.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -581,6 +609,11 @@
       <Name>Unity.Timeline.Editor</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{70a8d1fa-f978-9349-eb28-0fa0ded914a2}</Project>
+      <Name>Cinemachine</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{a1a15e72-f0cf-5960-424c-59d09523d565}</Project>
       <Name>Unity.VSCode.Editor</Name>
@@ -609,6 +642,11 @@
     <ProjectReference Include="Unity.Rider.Editor.csproj">
       <Project>{ef0d299e-b6f9-acc0-eac9-b732b8057d79}</Project>
       <Name>Unity.Rider.Editor</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{f170b193-daad-8369-0a7c-63a6c1a54213}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
