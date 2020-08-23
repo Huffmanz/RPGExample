@@ -8,14 +8,21 @@ namespace RPG.Combat{
     
         Health target;
         [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] float weaponDamage = 10f;
-        float weaponRange = 2;
+
+        [SerializeField] Transform handTransform = null;
+        [SerializeField] Weapon weapon = null;
+
+        
         float timeSinceLastAttack = Mathf.Infinity;
+
+        public void Start() {
+            SpawnWeapon();
+        }
         public void Update(){
             timeSinceLastAttack += Time.deltaTime;
             if(target == null) return;
             if(target.isDead) return;
-            if(Vector3.Distance(transform.position, target.transform.position) <= weaponRange)
+            if(Vector3.Distance(transform.position, target.transform.position) <= weapon.GetRange())
             {
                 GetComponent<Mover>().Cancel(); 
                 AttackBehaviour();
@@ -70,7 +77,12 @@ namespace RPG.Combat{
         //Animation event
         void Hit(){
             if(target==null) return;
-            target.TakeDamage(weaponDamage);
+            target.TakeDamage(weapon.GetDamage());
+        }
+
+        void SpawnWeapon(){
+            if (weapon == null) return;
+            weapon.Spawn(handTransform, GetComponent<Animator>());
         }
     }
 }
