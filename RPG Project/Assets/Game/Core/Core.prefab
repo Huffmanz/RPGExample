@@ -58,17 +58,17 @@ PrefabInstance:
     - target: {fileID: 350545643281922612, guid: 581f466fa62bb12429209f3f54f3919b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.574356
+      value: 8.574989
       objectReference: {fileID: 0}
     - target: {fileID: 350545643281922612, guid: 581f466fa62bb12429209f3f54f3919b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5025287
+      value: 1.5017548
       objectReference: {fileID: 0}
     - target: {fileID: 350545643281922612, guid: 581f466fa62bb12429209f3f54f3919b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.9851761
+      value: -0.9850197
       objectReference: {fileID: 0}
     - target: {fileID: 350545643281922612, guid: 581f466fa62bb12429209f3f54f3919b,
         type: 3}
@@ -210,6 +210,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6928802092483513685, guid: 5d190d69205dc3b44a330fec94291393,
+        type: 3}
+      propertyPath: healthPoints
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d190d69205dc3b44a330fec94291393, type: 3}
 --- !u!4 &7894970271240650230 stripped
@@ -233,17 +238,17 @@ PrefabInstance:
     - target: {fileID: 4072458638792344070, guid: 8e2cea566ae20504daebb1a197fc32ad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.574356
+      value: 8.574989
       objectReference: {fileID: 0}
     - target: {fileID: 4072458638792344070, guid: 8e2cea566ae20504daebb1a197fc32ad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5025287
+      value: 1.5017548
       objectReference: {fileID: 0}
     - target: {fileID: 4072458638792344070, guid: 8e2cea566ae20504daebb1a197fc32ad,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.9851761
+      value: -0.9850197
       objectReference: {fileID: 0}
     - target: {fileID: 4072458638792344070, guid: 8e2cea566ae20504daebb1a197fc32ad,
         type: 3}

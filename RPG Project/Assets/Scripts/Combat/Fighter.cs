@@ -1,28 +1,35 @@
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using RPG.Saving;
+using RPG.Resources;
 
 namespace RPG.Combat{
 
-    public class Fighter : MonoBehaviour, IAction{
+    public class Fighter : MonoBehaviour, IAction, ISaveable{
     
         Health target;
         [SerializeField] float timeBetweenAttacks = 1f;
 
-        [SerializeField] Transform handTransform = null;
-        [SerializeField] Weapon weapon = null;
+        [SerializeField] Transform rightHandTransform = null;
+        [SerializeField] Transform leftHandTransform = null;
+        [SerializeField] Weapon defaultWeapon = null;
+        Weapon currentWeapon = null;
 
         
         float timeSinceLastAttack = Mathf.Infinity;
 
         public void Start() {
-            SpawnWeapon();
+            if(defaultWeapon != null){
+                EquipWeapon(defaultWeapon);
+            }
+            
         }
         public void Update(){
             timeSinceLastAttack += Time.deltaTime;
             if(target == null) return;
             if(target.isDead) return;
-            if(Vector3.Distance(transform.position, target.transform.position) <= weapon.GetRange())
+            if(Vector3.Distance(transform.position, target.transform.position) <= currentWeapon.GetRange())
             {
                 GetComponent<Mover>().Cancel(); 
                 AttackBehaviour();
@@ -77,12 +84,37 @@ namespace RPG.Combat{
         //Animation event
         void Hit(){
             if(target==null) return;
-            target.TakeDamage(weapon.GetDamage());
+            if(currentWeapon.HasProjectile()){
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target.GetComponent<RPG.Resources.Health>(), gameObject);
+            }else{
+                target.TakeDamage(currentWeapon.GetDamage(), gameObject);
+            }
         }
 
-        void SpawnWeapon(){
-            if (weapon == null) return;
-            weapon.Spawn(handTransform, GetComponent<Animator>());
+        //Animation event
+        void Shoot(){
+            Hit();
+        }   
+
+        public void EquipWeapon(Weapon weapon){
+            currentWeapon = weapon;
+            if(weapon==null) return;    
+            weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+        }
+
+        public Health GetTarget(){
+            return target;
+        }
+        public object CaptureState()
+        {
+            if(currentWeapon == null) return defaultWeapon.name;
+            return currentWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            Weapon weapon = UnityEngine.Resources.Load<Weapon>((string) state);
+            EquipWeapon(weapon);
         }
     }
 }
