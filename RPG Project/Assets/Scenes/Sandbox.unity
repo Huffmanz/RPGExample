@@ -9320,6 +9320,36 @@ PrefabInstance:
       propertyPath: defaultWeaponName
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 5060910707549582384, guid: 247e3b24bad863446809fd50b15a1aa8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.574356
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060910707549582384, guid: 247e3b24bad863446809fd50b15a1aa8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5025287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060910707549582384, guid: 247e3b24bad863446809fd50b15a1aa8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.9851761
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060910707580093304, guid: 247e3b24bad863446809fd50b15a1aa8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.574356
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060910707580093304, guid: 247e3b24bad863446809fd50b15a1aa8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5025287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060910707580093304, guid: 247e3b24bad863446809fd50b15a1aa8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.9851761
+      objectReference: {fileID: 0}
     - target: {fileID: 5060910708320357164, guid: 247e3b24bad863446809fd50b15a1aa8,
         type: 3}
       propertyPath: m_Name
@@ -9379,6 +9409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678489150580473009, guid: 247e3b24bad863446809fd50b15a1aa8,
+        type: 3}
+      propertyPath: startingLevel
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 247e3b24bad863446809fd50b15a1aa8, type: 3}
