@@ -7,7 +7,7 @@ using RPG.Resources;
 namespace RPG.Combat{
 
     public class Fighter : MonoBehaviour, IAction, ISaveable{
-    
+
         Health target;
         [SerializeField] float timeBetweenAttacks = 1f;
 
@@ -16,14 +16,14 @@ namespace RPG.Combat{
         [SerializeField] Weapon defaultWeapon = null;
         Weapon currentWeapon = null;
 
-        
+
         float timeSinceLastAttack = Mathf.Infinity;
 
         public void Start() {
             if(defaultWeapon != null){
                 EquipWeapon(defaultWeapon);
             }
-            
+
         }
         public void Update(){
             timeSinceLastAttack += Time.deltaTime;
@@ -31,12 +31,12 @@ namespace RPG.Combat{
             if(target.isDead) return;
             if(Vector3.Distance(transform.position, target.transform.position) <= currentWeapon.GetRange())
             {
-                GetComponent<Mover>().Cancel(); 
+                GetComponent<Mover>().Cancel();
                 AttackBehaviour();
             }
             else
             {
-                GetComponent<Mover>().MoveTo(target.transform.position, 1f); 
+                GetComponent<Mover>().MoveTo(target.transform.position, 1f);
             }
         }
 
@@ -94,12 +94,12 @@ namespace RPG.Combat{
         //Animation event
         void Shoot(){
             Hit();
-        }   
+        }
 
         public void EquipWeapon(Weapon weapon){
-            currentWeapon = weapon;
-            if(weapon==null) return;    
-            weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+	         currentWeapon = weapon;
+           if(weapon==null) return;
+           weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
         }
 
         public Health GetTarget(){

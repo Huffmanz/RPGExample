@@ -31,9 +31,9 @@ namespace RPG.Control{
                 }
                 if(Input.GetMouseButtonDown(0)){
                     GetComponent<Fighter>().Attack(target.gameObject);
-                            
+
                 }
-                return true; 
+                return true;
             }
             return false;
         }

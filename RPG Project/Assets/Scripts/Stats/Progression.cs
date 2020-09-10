@@ -21,6 +21,11 @@ namespace RPG.Stats{
             return lookup[characterClass][stat][level-1];
         }
 
+        public int GetLevels(CharacterClass characterClass, Stat stat){
+          BuildLookup();
+          return lookup[characterClass][stat].Length;
+        }
+
         private void BuildLookup()
         {
             if(lookup != null ) return;
@@ -34,14 +39,14 @@ namespace RPG.Stats{
             }
         }
 
-        [System.Serializable] 
+        [System.Serializable]
     class ProgressionCharacterClass{
         public CharacterClass characterClass;
         public ProgressionStat[] stats;
 
     }
 
-    [System.Serializable] 
+    [System.Serializable]
     class ProgressionStat{
         public Stat stat;
         public float[] levels;

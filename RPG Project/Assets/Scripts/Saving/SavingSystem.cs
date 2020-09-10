@@ -9,8 +9,9 @@ using UnityEngine.SceneManagement;
 namespace RPG.Saving{
     public class SavingSystem : MonoBehaviour{
 
-        
+
         public void Save(string saveFile){
+
             Dictionary<string,object> state = LoadFile(saveFile);
             CaptureState(state);
             SaveFile(saveFile, state);
@@ -22,11 +23,11 @@ namespace RPG.Saving{
             using(FileStream stream = File.Open(path, FileMode.Create)){
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, state);
-            } 
+            }
         }
 
         public void Load(string saveFile){
-           
+            Debug.Log(saveFile);
             RestoreState(LoadFile(saveFile));
         }
 
@@ -65,15 +66,15 @@ namespace RPG.Saving{
             }
         }
         private void CaptureState(Dictionary<string,object> state){
-            
+
             foreach(var saveableEntities in FindObjectsOfType<SaveableEntity>()){
                 state[saveableEntities.GetUniqueIdentifier()] = saveableEntities.CaptureState();
             }
             state["LastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
-            
+
         }
 
-     
+
 
 
                 // private byte[] SerializeVector(Vector3 vector){
