@@ -5,13 +5,15 @@ using UnityEngine;
 
 namespace RPG.Resources{
     public class Health : MonoBehaviour, ISaveable {
-        [SerializeField] float healthPoints = 100f;
+        float healthPoints = -1f;
         BaseStats baseStats = null;
         public bool isDead = false;
 
         void Start(){
             baseStats = GetComponent<BaseStats>();
-            healthPoints = baseStats.GetStat(Stat.Health);
+            if (healthPoints < 0) { 
+                healthPoints = baseStats.GetStat(Stat.Health);
+            }
         }
         public void TakeDamage(float damage, GameObject instigator){
             healthPoints = Mathf.Max(healthPoints-damage, 0);

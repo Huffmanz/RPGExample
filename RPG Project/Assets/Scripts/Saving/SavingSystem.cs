@@ -31,6 +31,14 @@ namespace RPG.Saving{
             RestoreState(LoadFile(saveFile));
         }
 
+        public void Delete(string saveFile)
+        {
+            if (File.Exists(GetPathFromSaveFile(saveFile))) File.Delete(GetPathFromSaveFile(saveFile));
+
+
+ 
+        }
+
         public IEnumerator LoadLastScene(string saveFile){
             Dictionary<string, object> state = LoadFile(saveFile);
             if(state.ContainsKey("LastSceneBuildIndex")) {

@@ -14,7 +14,6 @@ namespace RPG.Saving{
         void Update(){
             if(Application.IsPlaying(gameObject)) return;
             if(string.IsNullOrEmpty(gameObject.scene.path)) return; //object is a prefab
-
             SerializedObject serializedObject = new SerializedObject(this);
             SerializedProperty property = serializedObject.FindProperty("uniqueIdentifier");
             if(string.IsNullOrEmpty(property.stringValue) || !IsUnique(property.stringValue)){
