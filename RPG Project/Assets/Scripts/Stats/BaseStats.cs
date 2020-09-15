@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Stats;
+using System;
 
 namespace RPG.Stats
 {
@@ -11,6 +12,7 @@ namespace RPG.Stats
         [SerializeField] int startingLevel = 1;
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression = null;
+        [SerializeField] GameObject levelUpEffect = null;
 
         private int currentLevel = 0;
 
@@ -27,7 +29,16 @@ namespace RPG.Stats
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel();
-            if (newLevel > currentLevel) currentLevel = newLevel;
+            if (newLevel > currentLevel)
+            {
+                currentLevel = newLevel;
+                LevelUpEffect();
+            }
+        }
+
+        private void LevelUpEffect()
+        {
+            Instantiate(levelUpEffect, gameObject.transform);
         }
 
         public float GetStat(Stat stat){
