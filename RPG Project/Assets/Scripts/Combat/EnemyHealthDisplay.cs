@@ -15,7 +15,7 @@ namespace RPG.Combat{
             if(health == null){
                 gameObject.GetComponent<Text>().text = "N/A";
             }else{
-                gameObject.GetComponent<Text>().text = String.Format("{0:0}%",health.HealthPercentage());
+                gameObject.GetComponent<Text>().text = String.Format("{0:0}/{1:0}", health.GetPoHealthPoints(), health.GetMaxHealthPoints());
             }
         }
     }

@@ -10,14 +10,20 @@ namespace RPG.Core{
         // Update is called once per frame
         void Update()
         {
-            if(targetToDestroy != null)
+
+
+            if (!GetComponent<ParticleSystem>().IsAlive())
             {
-                Destroy(targetToDestroy);
+                if (targetToDestroy != null)
+                {
+                    Destroy(targetToDestroy);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
-            else
-            {
-                if (!GetComponent<ParticleSystem>().IsAlive()) Destroy(gameObject);
-            }
+            
         }
     }
 

@@ -1,16 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Combat/CombatTarget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Stats/Progression.cs">
     <Files>
       <File FileName="Assets/Scripts/Core/ActionScheduler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Resources/Health.cs" Line="43" Column="1" />
-      <File FileName="Assets/Scripts/Scene Management/SavingWrapper.cs" Line="12" Column="45" />
-      <File FileName="Assets/Scripts/Saving/SavingSystem.cs" Line="37" Column="1" />
-      <File FileName="Assets/Scripts/Stats/BaseStats.cs" Line="41" Column="13" />
-      <File FileName="Assets/Scripts/Stats/ExperienceDisplay.cs" Line="14" Column="10" />
-      <File FileName="Assets/Scripts/Core/DestoryAfterEffect.cs" Line="14" Column="14" />
-      <File FileName="Assets/Scripts/Combat/Fighter.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Combat/CombatTarget.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Stats/Experience.cs" Line="19" Column="10" NotebookId="1" />
+      <File FileName="Assets/Scripts/Resources/Health.cs" Line="30" Column="51" />
+      <File FileName="Assets/Scripts/Saving/SavingSystem.cs" Line="37" Column="13" />
+      <File FileName="Library/PackageCache/com.unity.test-framework@1.1.11/UnityEditor.TestRunner/Api/CallbacksDelegator.cs" Line="23" Column="14" />
+      <File FileName="Assets/Scripts/Stats/BaseStats.cs" Line="27" Column="39" />
+      <File FileName="Assets/Scripts/Core/DestoryAfterEffect.cs" Line="24" Column="18" />
+      <File FileName="Assets/Scripts/Combat/Fighter.cs" Line="88" Column="75" />
+      <File FileName="Assets/Scripts/Combat/Weapon.cs" Line="50" Column="66" />
+      <File FileName="Assets/Scripts/Resources/HealthDisplay.cs" Line="16" Column="137" />
+      <File FileName="Assets/Scripts/Scene Management/Fader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Stats/Stat.cs" Line="7" Column="15" />
+      <File FileName="Assets/Scripts/Combat/EnemyHealthDisplay.cs" Line="21" Column="6" />
+      <File FileName="Assets/Scripts/Stats/Progression.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Stats/Experience.cs" Line="5" Column="14" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,16 +23,26 @@
             <Node name="Assembly-CSharp" expanded="True">
               <Node name="Assets" expanded="True">
                 <Node name="Scripts" expanded="True">
-                  <Node name="Combat" expanded="True">
-                    <Node name="CombatTarget.cs" selected="True" />
-                  </Node>
-                  <Node name="Control" expanded="True" />
+                  <Node name="Combat" expanded="True" />
                   <Node name="Core" expanded="True" />
                   <Node name="Movement" expanded="True" />
                   <Node name="Resources" expanded="True" />
                   <Node name="Saving" expanded="True" />
                   <Node name="Scene Management" expanded="True" />
-                  <Node name="Stats" expanded="True" />
+                  <Node name="Stats" expanded="True">
+                    <Node name="Progression.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+            <Node name="UnityEditor.TestRunner" expanded="True">
+              <Node name="Library" expanded="True">
+                <Node name="PackageCache" expanded="True">
+                  <Node name="com.unity.test-framework@1.1.11" expanded="True">
+                    <Node name="UnityEditor.TestRunner" expanded="True">
+                      <Node name="Api" expanded="True" />
+                    </Node>
+                  </Node>
                 </Node>
               </Node>
             </Node>

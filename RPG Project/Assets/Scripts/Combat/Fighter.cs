@@ -3,6 +3,7 @@ using RPG.Movement;
 using RPG.Core;
 using RPG.Saving;
 using RPG.Resources;
+using RPG.Stats;
 
 namespace RPG.Combat{
 
@@ -84,10 +85,11 @@ namespace RPG.Combat{
         //Animation event
         void Hit(){
             if(target==null) return;
-            if(currentWeapon.HasProjectile()){
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target.GetComponent<RPG.Resources.Health>(), gameObject);
+            float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+            if (currentWeapon.HasProjectile()){
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target.GetComponent<RPG.Resources.Health>(), gameObject, damage);
             }else{
-                target.TakeDamage(currentWeapon.GetDamage(), gameObject);
+                target.TakeDamage(damage, gameObject);
             }
         }
 
