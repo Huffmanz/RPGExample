@@ -10,12 +10,14 @@ namespace RPG.Combat
         [SerializeField] GameObject weaponPrefab = null;
         [SerializeField] AnimatorOverrideController overrideController = null;
         [SerializeField] float weaponDamage = 10f;
+        [SerializeField] float percentBonus = 0f;
         [SerializeField] float weaponRange = 2;
         [SerializeField] bool rightHanded = true;   
         [SerializeField] Projectile projectile = null;
         const string weaponName = "Weapon";
         public float GetDamage() { return weaponDamage; }
         public float GetRange() { return weaponRange; }
+        public float GetPercentageBonus() { return percentBonus; }
         public void Spawn(Transform rightHand, Transform leftHand, Animator animator){
             DestroyOldWeapon(rightHand, leftHand);
             if(weaponPrefab != null){

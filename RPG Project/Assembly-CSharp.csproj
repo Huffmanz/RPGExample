@@ -86,9 +86,11 @@
      <Compile Include="Assets\Scripts\Stats\CharacterClass.cs" />
      <Compile Include="Assets\Scripts\Stats\Experience.cs" />
      <Compile Include="Assets\Scripts\Stats\ExperienceDisplay.cs" />
+     <Compile Include="Assets\Scripts\Stats\IModifierProvider.cs" />
      <Compile Include="Assets\Scripts\Stats\LevelDisplay.cs" />
      <Compile Include="Assets\Scripts\Stats\Progression.cs" />
      <Compile Include="Assets\Scripts\Stats\Stat.cs" />
+     <Compile Include="Assets\Scripts\Utils\LazyValue.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
      <None Include="Assets\Asset Packs\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
      <None Include="Assets\Asset Packs\Animations by Explosive\README - Usage Rights for these assets 1.txt" />

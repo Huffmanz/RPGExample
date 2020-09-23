@@ -25,19 +25,30 @@ public class AIController : MonoBehaviour
     GameObject player;
     Fighter fighter;
     Vector3 guardPosition;
+    Health health;
+    Mover mover;
     float timeSinceLastSawPlayer = Mathf.Infinity;
     float timeSinceMoved = Mathf.Infinity;
     int currentWaypoint=0;
-    void Start() {
-   
-        player = GameObject.FindWithTag("Player");
-        fighter = GetComponent<Fighter>();
-        guardPosition = transform.position;
-        
-    }
-    void Update()
+
+        void Awake()
         {
-            if(GetComponent<Health>().isDead) return;
+
+            player = GameObject.FindWithTag("Player");
+            fighter = GetComponent<Fighter>();
+            health = GetComponent<Health>();
+            mover = GetComponent<Mover>();
+        }
+        void Start() 
+        {
+       
+
+            guardPosition = transform.position;
+            
+        }
+        void Update()
+        {
+            if(health.isDead) return;
             if (InRangeOfPlayer() &&  fighter.CanAttack(player.gameObject))
             {
                 timeSinceLastSawPlayer = 0;
@@ -67,7 +78,7 @@ public class AIController : MonoBehaviour
 
                 }
                 if(timeSinceMoved >= dwellTime){
-                    GetComponent<Mover>().StartMoveAction(nextPosition, patrolSpeedFraction);
+                    mover.StartMoveAction(nextPosition, patrolSpeedFraction);
                     timeSinceMoved = 0;
             }
             

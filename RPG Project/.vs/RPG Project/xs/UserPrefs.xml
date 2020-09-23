@@ -1,7 +1,14 @@
-﻿<Properties>
+﻿<Properties StartupConfiguration="{A0CDD99C-818D-7C47-A8C8-FEA2C9D38FBA}|Unit Tests">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Stats/BaseStats.cs">
     <Files>
-      <File FileName="Assets/Scripts/Stats/BaseStats.cs" Line="75" Column="9" />
+      <File FileName="Assets/Scripts/Stats/BaseStats.cs" Line="75" Column="10" />
+      <File FileName="Assets/Scripts/Stats/IModifierProvider.cs" Line="10" Column="50" />
+      <File FileName="Assets/Scripts/Combat/Fighter.cs" Line="107" Column="84" />
+      <File FileName="Assets/Scripts/Combat/Weapon.cs" Line="20" Column="65" />
+      <File FileName="Assets/Scripts/Combat/Projectile.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Control/AIController.cs" Line="40" Column="43" />
+      <File FileName="Assets/Scripts/Utils/LazyValue.cs" Line="39" Column="31" />
+      <File FileName="Assets/Scripts/Resources/Health.cs" Line="47" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,6 +18,7 @@
               <Node name="Assets" expanded="True">
                 <Node name="Scripts" expanded="True">
                   <Node name="Combat" expanded="True" />
+                  <Node name="Control" expanded="True" />
                   <Node name="Core" expanded="True" />
                   <Node name="Movement" expanded="True" />
                   <Node name="Resources" expanded="True" />
@@ -19,6 +27,7 @@
                   <Node name="Stats" expanded="True">
                     <Node name="BaseStats.cs" selected="True" />
                   </Node>
+                  <Node name="Utils" expanded="True" />
                 </Node>
               </Node>
             </Node>
@@ -40,6 +49,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.UnityEngine.TestRunner PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

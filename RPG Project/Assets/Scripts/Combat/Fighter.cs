@@ -4,10 +4,11 @@ using RPG.Core;
 using RPG.Saving;
 using RPG.Resources;
 using RPG.Stats;
+using System.Collections.Generic;
 
 namespace RPG.Combat{
 
-    public class Fighter : MonoBehaviour, IAction, ISaveable{
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider{
 
         Health target;
         [SerializeField] float timeBetweenAttacks = 1f;
@@ -82,10 +83,28 @@ namespace RPG.Combat{
             return targetToTest != null && !targetToTest.isDead;
 
         }
+
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+        {
+            if(stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetDamage();
+            }
+
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if(stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetPercentageBonus();
+            }
+        }
         //Animation event
         void Hit(){
             if(target==null) return;
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+            Debug.Log(gameObject.name + " Deals " + damage + " to " + target.name);
             if (currentWeapon.HasProjectile()){
                 currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target.GetComponent<RPG.Resources.Health>(), gameObject, damage);
             }else{
@@ -118,5 +137,7 @@ namespace RPG.Combat{
             Weapon weapon = UnityEngine.Resources.Load<Weapon>((string) state);
             EquipWeapon(weapon);
         }
+
+
     }
 }

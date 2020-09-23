@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 0}
   overrideController: {fileID: 22100000, guid: 6b52d6b5a3608314b9324cff371cc292, type: 2}
-  weaponDamage: 10
+  weaponDamage: 20
+  percentBonus: 0
   weaponRange: 10
   rightHanded: 0
   projectile: {fileID: 8609355729405831438, guid: 381b231e21912644dbca62922c2189c5,
