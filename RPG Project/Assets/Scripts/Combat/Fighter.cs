@@ -1,10 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
 using RPG.Saving;
-using RPG.Resources;
+using RPG.Attributes;
 using RPG.Stats;
 using System.Collections.Generic;
+using Utils;
 
 namespace RPG.Combat{
 
@@ -15,13 +16,27 @@ namespace RPG.Combat{
 
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
-        [SerializeField] Weapon defaultWeapon = null;
-        Weapon currentWeapon = null;
+        [SerializeField] WeaponConfig defaultWeapon = null;
+        WeaponConfig currentWeaponConfig = null;
+        LazyValue<Weapon> currentWeapon;
 
 
         float timeSinceLastAttack = Mathf.Infinity;
 
+        private void Awake()
+        {
+            currentWeaponConfig = defaultWeapon;
+            currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+        }
+
+        private Weapon SetupDefaultWeapon()
+        {
+            return EquipWeapon(defaultWeapon);
+        }
+
         public void Start() {
+            EquipWeapon(currentWeaponConfig);
+            currentWeapon.ForceInit();
             if(defaultWeapon != null){
                 EquipWeapon(defaultWeapon);
             }
@@ -31,7 +46,7 @@ namespace RPG.Combat{
             timeSinceLastAttack += Time.deltaTime;
             if(target == null) return;
             if(target.isDead) return;
-            if(Vector3.Distance(transform.position, target.transform.position) <= currentWeapon.GetRange())
+            if(IsInRange(target.transform))
             {
                 GetComponent<Mover>().Cancel();
                 AttackBehaviour();
@@ -77,7 +92,14 @@ namespace RPG.Combat{
             GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
+        private bool IsInRange(Transform targetTransform)
+        {
+            return Vector3.Distance(transform.position, target.transform.position) <= currentWeaponConfig.GetRange();
+        }
+
         public bool CanAttack(GameObject combatTarget){
+            if (!GetComponent<Mover>().CanMoveTo(combatTarget.transform.position) &&
+                !IsInRange(combatTarget.transform)) return false;
             if(combatTarget == null) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.isDead;
@@ -88,7 +110,7 @@ namespace RPG.Combat{
         {
             if(stat == Stat.Damage)
             {
-                yield return currentWeapon.GetDamage();
+                yield return currentWeaponConfig.GetDamage();
             }
 
         }
@@ -97,16 +119,19 @@ namespace RPG.Combat{
         {
             if(stat == Stat.Damage)
             {
-                yield return currentWeapon.GetPercentageBonus();
+                yield return currentWeaponConfig.GetPercentageBonus();
             }
         }
         //Animation event
         void Hit(){
+
             if(target==null) return;
+            if (currentWeapon.value == null) return;
+            currentWeapon.value.OnHit();
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
             Debug.Log(gameObject.name + " Deals " + damage + " to " + target.name);
-            if (currentWeapon.HasProjectile()){
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target.GetComponent<RPG.Resources.Health>(), gameObject, damage);
+            if (currentWeaponConfig.HasProjectile()){
+                currentWeaponConfig.LaunchProjectile(rightHandTransform, leftHandTransform, target.GetComponent<RPG.Attributes.Health>(), gameObject, damage);
             }else{
                 target.TakeDamage(damage, gameObject);
             }
@@ -117,10 +142,12 @@ namespace RPG.Combat{
             Hit();
         }
 
-        public void EquipWeapon(Weapon weapon){
-	         currentWeapon = weapon;
-           if(weapon==null) return;
-           weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+        public Weapon EquipWeapon(WeaponConfig weapon){ 
+	         
+           if(weapon==null) return new Weapon();
+            currentWeaponConfig = weapon;
+           currentWeapon.value = currentWeaponConfig.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+           return currentWeapon.value;
         }
 
         public Health GetTarget(){
@@ -128,14 +155,14 @@ namespace RPG.Combat{
         }
         public object CaptureState()
         {
-            if(currentWeapon == null) return defaultWeapon.name;
-            return currentWeapon.name;
+            if(currentWeaponConfig == null) return defaultWeapon.name;
+            return currentWeaponConfig.name;
         }
 
         public void RestoreState(object state)
         {
-            Weapon weapon = UnityEngine.Resources.Load<Weapon>((string) state);
-            EquipWeapon(weapon);
+            WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>((string) state);
+            currentWeapon.value = EquipWeapon(weapon);
         }
 
 

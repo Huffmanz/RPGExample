@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
 using RPG.Saving;
-using RPG.Resources;
+using RPG.Attributes;
 
 namespace RPG.Movement{
     public class Mover : MonoBehaviour, IAction, ISaveable
     {
         NavMeshAgent navMeshAgent;
         [SerializeField] float maxSpeed = 6f;
-        
+        [SerializeField] float maxNavMeshProjectionDistance = 1f;
+        [SerializeField] float maxNavMeshPathLength = 40f;
+
         void Start(){
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
@@ -22,6 +24,27 @@ namespace RPG.Movement{
             // }
             navMeshAgent.enabled = !GetComponent<Health>().isDead;
             UpdateAnimator();
+        }
+
+        public bool CanMoveTo(Vector3 destination)
+        {
+            NavMeshPath navMeshPath = new NavMeshPath();
+            bool hasPath = NavMesh.CalculatePath(gameObject.transform.position, destination, NavMesh.AllAreas, navMeshPath);
+            if (!hasPath) return false;
+            if (navMeshPath.status != NavMeshPathStatus.PathComplete) return false;
+            if (GetPathLength(navMeshPath) > maxNavMeshPathLength) return false;
+            return true;
+        }
+
+        private float GetPathLength(NavMeshPath navMeshPath)
+        {
+            float distance = 0;
+            if (navMeshPath.corners.Length < 2) return 0;
+            for (int i = 1; i < navMeshPath.corners.Length; i++)
+            {
+                distance += Vector3.Distance(navMeshPath.corners[i - 1], navMeshPath.corners[i]);
+            }
+            return distance;
         }
 
         public void MoveTo(Vector3 destination, float speedFraction)

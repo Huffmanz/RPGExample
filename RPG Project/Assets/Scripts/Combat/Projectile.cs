@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using RPG.Core;
-using RPG.Resources;
+using RPG.Attributes;
 using UnityEngine;
+using UnityEngine.Events;
+
 namespace RPG.Combat{
         
     public class Projectile : MonoBehaviour
@@ -14,6 +16,7 @@ namespace RPG.Combat{
         [SerializeField] float maxLifetime = 10f;
         [SerializeField] GameObject[] destroyOnHit = null;
         [SerializeField] float lifeAfterImpact = 2f;
+        [SerializeField] UnityEvent ProjectileHit;
         Health target = null;
         GameObject instigator = null;
         float damage = 0;
@@ -42,6 +45,7 @@ namespace RPG.Combat{
                     Destroy(destory);
                 }
                 Destroy(gameObject, lifeAfterImpact);
+                ProjectileHit.Invoke();
             }
         }
         public void SetTarget(Health _target, float _damage, GameObject _instigator){

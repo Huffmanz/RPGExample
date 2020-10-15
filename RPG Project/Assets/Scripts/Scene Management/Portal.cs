@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Control;
 using RPG.Saving;
 using RPG.SceneManagement;
 using UnityEngine;
@@ -27,17 +28,26 @@ public class Portal : MonoBehaviour
     }
     private IEnumerator Transition(){
         DontDestroyOnLoad(gameObject);
+
         SavingWrapper saveSystem = GameObject.FindObjectOfType<SavingWrapper>();
         saveSystem.Save();
         Fader fader = FindObjectOfType<Fader>();
+        PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        playerController.enabled = false;
+
         yield return fader.FadeOut(fadeOutTime);
         yield return SceneManager.LoadSceneAsync(SceneToLoad);
         saveSystem.Load();
+        PlayerController newPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        newPlayerController.enabled = false;
+
         Portal otherPortal = getOtherPortal();
+        Debug.Log(SceneManager.GetActiveScene().buildIndex);
         UpdatePlayer(otherPortal);
         saveSystem.Save();
         yield return new WaitForSeconds(fadeWaitTime);
         yield return fader.FadeIn(fadeInTime);
+        newPlayerController.enabled = true;
         Destroy(gameObject);
     }
 

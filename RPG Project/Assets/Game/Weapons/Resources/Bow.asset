@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280ee48ead7f76847a720dc29312c290, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 8487029788597863701, guid: b87878842c2676045a68b21e231ad535,
+  weaponPrefab: {fileID: 2925879674463427234, guid: b87878842c2676045a68b21e231ad535,
     type: 3}
   overrideController: {fileID: 22100000, guid: fa9c3e12fff057448a265599d4578cee, type: 2}
   weaponDamage: 5
+  percentBonus: 0
   weaponRange: 10
   rightHanded: 0
   projectile: {fileID: 3646187167133914715, guid: 89528002a604ff14794d0d957e06d24a,
